@@ -75,7 +75,7 @@ fprintf('Expected gradients (approx) - first five values only:\n');
 fprintf(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n');
 
 fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+kbhit();
 
 % Compute and display cost and gradient
 % with all-ones theta and lambda = 10
@@ -90,7 +90,7 @@ fprintf('Expected gradients (approx) - first five values only:\n');
 fprintf(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n');
 
 fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+kbhit();
 
 %% ============= Part 2: Regularization and Accuracies =============
 %  Optional Exercise:

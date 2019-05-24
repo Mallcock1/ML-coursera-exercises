@@ -15,11 +15,9 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
-
-
-
-
-
+h_theta = sigmoid(X*theta);
+indices = find(h_theta>=0.5); % indicies where prediction is 1
+p(indices) = 1;
 
 % =========================================================================
 
