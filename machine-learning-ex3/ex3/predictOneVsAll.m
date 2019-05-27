@@ -30,12 +30,13 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-h_theta = sigmoid(X*all_theta);
+% Evaluate hypothesis
+h_theta = sigmoid(X*all_theta');
 
-%Psuedo code:
-% For each example, for each theta take h_theta of that example.
-% For each example argmax of the h_thetas is the predicted class.
-% set p to be this
+% Find maximums of each row
+[M, iM] = max(h_theta, [], 2);
+
+p = iM;
 
 % =========================================================================
 

@@ -21,13 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
+% Calculate outputs of second layer
+a2 = sigmoid(X*Theta1');
 
+% Add a column of ones to the a2 outputs
+a2 = [ones(m, 1) a2];
 
+% Calculate outputs of third layer
+a3 = sigmoid(a2*Theta2');
 
+% Assign h_theta to be the output from the final layer
+h_theta = a3;
 
+% Find maximums of each row
+[M, iM] = max(h_theta, [], 2);
 
-
+p = iM;
 
 % =========================================================================
 
