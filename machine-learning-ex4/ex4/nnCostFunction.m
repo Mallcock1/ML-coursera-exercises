@@ -79,13 +79,13 @@ h_theta = a3;
 
 % Recode y
 y_new = zeros(m, num_labels);
-for i=1:m
+for i = 1:m
   y_new(i, y(i)) = 1;
 endfor
 
 % Calculate the unregularised cost
 Junreg = 0;
-for i=1:m
+for i = 1:m
   % Cost for each example
   Junregi = -y_new(i,:)*log(h_theta(i,:))' - (1 - y_new(i,:))*log(1 - h_theta(i,:))';
   % Sum the costs
@@ -94,18 +94,19 @@ endfor
 % Divide by number of examples summed
 Junreg = Junreg/m;
 
+
 % Calculate the regularised cost
 Jreg = 0;
 Theta1_reg = [zeros(size(Theta1)(1), 1), Theta1(:,2:end)];
 Theta2_reg = [zeros(size(Theta2)(1), 1), Theta2(:,2:end)];
 
 Theta_sum1 = 0;
-for j=1:size(Theta1)(1)
+for j = 1:size(Theta1)(1)
   Theta1_slice = Theta1_reg(j, :);
   Theta_sum1 = Theta_sum1 + Theta1_slice*Theta1_slice';
 endfor
 Theta_sum2 = 0;
-for j=1:size(Theta2)(1)
+for j = 1:size(Theta2)(1)
   Theta2_slice = Theta2_reg(j, :);
   Theta_sum2 = Theta_sum2 + Theta2_slice*Theta2_slice';
 endfor
@@ -113,6 +114,15 @@ Jreg = lambda/(2*m)*(Theta_sum1 + Theta_sum2);
 
 % Add together the costs
 J = Junreg + Jreg;
+
+
+% Backpropagation
+for t = 1:m
+  
+endfor
+
+
+
 
 % -------------------------------------------------------------
 
