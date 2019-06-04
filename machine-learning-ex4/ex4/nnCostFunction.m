@@ -62,23 +62,59 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
+% Calculate outputs of second layer
+a2 = sigmoid(X*Theta1');
 
+% Add a column of ones to the a2 outputs
+a2 = [ones(m, 1) a2];
 
+% Calculate outputs of third layer
+a3 = sigmoid(a2*Theta2');
 
+% Assign h_theta to be the outputs from the final layer
+h_theta = a3;
 
+% Recode y
+y_new = zeros(m, 10);
+for i=1:m
+  y_new(i, y(i)) = 1;
+endfor
 
+% Calculate the unregularised cost
+Junreg = 0;
+for i=1:m
+  % Cost for each example
+  Junregi = -y_new(i,:)*log(h_theta(i,:))' - (1 - y_new(i,:))*log(1 - h_theta(i,:))';
+  % Sum the costs
+  Junreg = Junreg + Junregi;
+endfor
+% Divide by number of examples summed
+Junreg = Junreg/m;
 
+% Calculate the regularised cost
+Jreg = 0;
+Theta1_reg = [zeros(1, size(Theta1)(2)); Theta1(2:end,:)];
+Theta2_reg = [zeros(1, size(Theta2)(2)); Theta2(2:end,:)];
 
+%Theta_sum1 = 0;
+%for j=1:size(Theta1)(2)
+%  Theta1_slice = Theta1_reg(:, j);
+%  Theta_sum1 = Theta_sum1 + Theta1_slice'*Theta1_slice;
+%endfor
+%Theta_sum2 = 0;
+%for j=1:size(Theta2)(2)
+%  Theta2_slice = Theta2_reg(:, j);
+%  Theta_sum2 = Theta_sum2 + Theta2_slice'*Theta2_slice;
+%endfor
+%Jreg = lambda/(2*m)*(Theta_sum1 + Theta_sum2);
 
+Jreg = lambda/(2*m)*(Theta
 
-
-
-
-
-
-
-
+% Add together the costs
+J = Junreg + Jreg;
 
 % -------------------------------------------------------------
 
