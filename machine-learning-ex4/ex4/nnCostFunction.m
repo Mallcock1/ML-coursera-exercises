@@ -117,12 +117,36 @@ J = Junreg + Jreg;
 
 
 % Backpropagation
+Delta1 = zeros(size(Theta1));
+Delta2 = zeros(size(Theta2));
 for t = 1:m
+  % Take a slice of the X data
+  xt = X(t, :);
+  a1 = xt;
+
+  % Calculate outputs of second layer
+  z2 = xt*Theta1';
+  a2 = sigmoid(z2);
+
+  % Add a column of ones to the a2 outputs
+  a2 = [1 a2];
+
+  % Calculate outputs of third layer
+  z3 = a2*Theta2';
+  a3 = sigmoid(z3);
+
+  delta3 = a3 - y_new(t,:);
   
+  delta2 = delta3*Theta2.*[1 sigmoidGradient(z2)];
+  
+  delta2 = delta2(2:end);
+
+  Delta1 = Delta1 + delta2'*a1;
+  Delta2 = Delta2 + delta3'*a2;
 endfor
 
-
-
+Theta1_grad = 1/m*(Delta1 + lambda*Theta1_reg);
+Theta2_grad = 1/m*(Delta2 + lambda*Theta2_reg);
 
 % -------------------------------------------------------------
 
