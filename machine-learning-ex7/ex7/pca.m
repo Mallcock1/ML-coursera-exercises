@@ -20,11 +20,11 @@ S = zeros(n);
 %       number of examples).
 %
 
+% covariance matrix
+Sigma = 1/m*X'*X;
 
-
-
-
-
+% Single value decomposition used to compute eigenvectors/values of Sigma
+[U, S, V] = svd(Sigma);
 
 % =========================================================================
 

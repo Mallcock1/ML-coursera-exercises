@@ -33,8 +33,6 @@ for i = 1:m
   [M, iM] = min(centroid_distance(i, :));
   idx(i) = iM;
 endfor
-%size(centroid_distance)
-
 
 % =============================================================
 
